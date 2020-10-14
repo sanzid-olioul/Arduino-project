@@ -22,10 +22,10 @@ void loop() {
   if(!Left && !Right){
     goForward();
   }
-  if(!Left && Right){
+  if(Left && !Right){
     goLeft();
   }
-  if(Left && !Right){
+  if(!Left && Right){
     goRight();
   }
   if(Left && Right){
@@ -34,7 +34,7 @@ void loop() {
 }
 
 void goForward(){
-  int Mspeed=10;
+  int Mspeed=5;
   while(!Left && !Right){
     motor1.setSpeed(Mspeed);
     motor1.run(FORWARD);
@@ -46,8 +46,8 @@ void goForward(){
     motor4.run(FORWARD);
     //delay(200);
     Mspeed+=5;
-    if(Mspeed >255){
-      Mspeed = 255;
+    if(Mspeed >100){
+      Mspeed = 100;
     }
     Left = digitalRead(left);
     Right = digitalRead(right);
@@ -55,8 +55,8 @@ void goForward(){
 }
 
 void goLeft(){
-  int Mspeed=50;
-  while(!Left && Right){
+  int Mspeed=5;
+  while(Left && !Right){
     motor1.setSpeed(Mspeed);
     motor1.run(RELEASE);
     motor2.setSpeed(Mspeed);
@@ -76,8 +76,8 @@ void goLeft(){
 }
 
 void goRight(){
-  int Mspeed=50;
-  while(Left && !Right){
+  int Mspeed=5;
+  while(!Left && Right){
     motor1.setSpeed(Mspeed);
     motor1.run(RELEASE);
     motor2.setSpeed(Mspeed);
